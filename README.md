@@ -5,8 +5,7 @@ L#
 
 WolfZilean:
 ===========
-|Full SBTW Combo
-|Use R at % Health|
+|Full SBTW Combo | Use R at % Health|
 
 WIP:
 ====
