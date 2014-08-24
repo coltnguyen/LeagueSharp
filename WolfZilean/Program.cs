@@ -14,7 +14,7 @@ namespace WolfZilean
     class Program
     {
         //Calls Champion
-        public static string ChampName = "$safeprojectname$";
+        public static string ChampName = "Zilean";
         //Orbwalker
         public static Orbwalking.Orbwalker Orbwalker;
         public static Obj_AI_Base Player = ObjectManager.Player; // Instead of typing ObjectManager.Player you can just type Player
