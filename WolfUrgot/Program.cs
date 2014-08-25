@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-//Thanks Snorflake for template, PQMailer for some fixes and Trelli for helping fix Q Collision :D
 
 using LeagueSharp;
 using LeagueSharp.Common;
