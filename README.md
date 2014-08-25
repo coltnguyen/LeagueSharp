@@ -8,4 +8,5 @@ WolfZilean:
 
 WolfUrgot:
 ----------
-    Uses Q, W, E
+    Uses Q, E
+    Smart W automatically casts W when E Hits
