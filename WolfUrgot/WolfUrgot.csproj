@@ -7,8 +7,8 @@
     <ProjectGuid>{5503512C-0CCF-443F-90A5-0DFE077084C0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>$safeprojectname$</RootNamespace>
-    <AssemblyName>LeagueSharp Test</AssemblyName>
+    <RootNamespace>WolfUrgot</RootNamespace>
+    <AssemblyName>WolfUrgot</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
