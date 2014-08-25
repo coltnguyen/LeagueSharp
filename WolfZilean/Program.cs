@@ -1,4 +1,4 @@
-﻿//Thanks iSnorflake for the template, PQMailer for some error fixing and FlapperDoodle for some info
+//Thanks iSnorflake for the template, PQMailer for some error fixing and FlapperDoodle for some info
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +85,10 @@ namespace WolfZilean
                 Combo();
             }
         }
+        private float GetPlayerHealthPercentage()
+        {
+            return ObjectManager.Player.Health * 100 / ObjectManager.Player.MaxHealth;
+        }
 
         private void OnGameUpdate(EventArgs args)
         {
@@ -129,13 +133,11 @@ namespace WolfZilean
             foreach (var spell in SpellList)
             {
                 menuItem = Wolf.Item(spell.Slot + "Range").GetValue<Circle>();
-                if (menuItem.Active) 
+                menuItem2 = Wolf.Item(spell.Slot + "Range").GetValue<Circle>();
+                if (menuItem.Active && menuItem2.Active) 
                     Utility.DrawCircle(Player.Position, spell.Range, menuItem.Color);
             }
         }
-        private float GetPlayerHealthPercentage()
-        {
-            return ObjectManager.Player.Health * 100 / ObjectManager.Player.MaxHealth;
-        }
+
     }
 }
