@@ -58,9 +58,9 @@ namespace WolfZilean
             Wolf.SubMenu("Combo").AddItem(new MenuItem("useE", "Use E").SetValue(true));
             Wolf.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "Combo").SetValue(new KeyBind(32, KeyBindType.Press)));
             //Ult menu
-            Wolf.AddSubMenu(new Menu("Ult", "Ult Settings"));
-            Wolf.SubMenu("Ult").AddItem(new MenuItem("UseR", "Use R").SetValue(true));
-            Wolf.SubMenu("Ult").AddItem(new MenuItem("HealthPercent", "HP Trigger Percent").SetValue(new Slider(15)));
+            //Wolf.AddSubMenu(new Menu("Ult", "Ult Settings"));
+            //Wolf.SubMenu("Ult").AddItem(new MenuItem("UseR", "Use R").SetValue(true));
+            //Wolf.SubMenu("Ult").AddItem(new MenuItem("HealthPercent", "HP Trigger Percent").SetValue(new Slider(15)));
             //Drawings menu:
             Wolf.AddSubMenu(new Menu("Drawings", "Drawings"));
             Wolf.SubMenu("Drawings").AddItem(new MenuItem("QRange", "Q/E").SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
@@ -85,22 +85,6 @@ namespace WolfZilean
                 Combo();
             }
         }
-        private float GetPlayerHealthPercentage()
-        {
-            return ObjectManager.Player.Health * 100 / ObjectManager.Player.MaxHealth;
-        }
-
-        private void OnGameUpdate(EventArgs args)
-        {
-                if (Wolf.Item("Ult").GetValue<Boolean>())
-                {
-                    if (GetPlayerHealthPercentage() <= Wolf.Item("HealthPercent").GetValue<Slider>().Value)
-                    {
-                        R.Cast(Player);
-                    }
-                }
-            }
-
 
         public static void Combo()
         {
