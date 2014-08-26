@@ -1,32 +1,31 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Drawing;
 using LeagueSharp;
 using LeagueSharp.Common;
-using SharpDX;
-using Color = System.Drawing.Color;
 
 namespace WolfZilean
 {
-    class Program
+    internal class Program
     {
         public static string ChampName = "Zilean";
         public static Orbwalking.Orbwalker Orbwalker;
-        public static Obj_AI_Base Player = ObjectManager.Player; // Instead of typing ObjectManager.Player you can just type Player
+
+        public static Obj_AI_Base Player = ObjectManager.Player;
+            // Instead of typing ObjectManager.Player you can just type Player
+
         //Spells
         public static List<Spell> SpellList = new List<Spell>();
         public static Spell Q, W, E, R;
 
         public static Menu Wolf;
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             CustomEvents.Game.OnGameLoad += Game_OnGameLoad;
         }
 
-        static void Game_OnGameLoad(EventArgs args)
+        private static void Game_OnGameLoad(EventArgs args)
         {
             if (Player.BaseSkinName != ChampName) return;
 
@@ -54,10 +53,12 @@ namespace WolfZilean
             Wolf.SubMenu("Combo").AddItem(new MenuItem("useQ", "Use Q").SetValue(true));
             Wolf.SubMenu("Combo").AddItem(new MenuItem("useW", "Use W").SetValue(true));
             Wolf.SubMenu("Combo").AddItem(new MenuItem("useE", "Use E").SetValue(true));
-            Wolf.SubMenu("Combo").AddItem(new MenuItem("ComboActive", "Combo").SetValue(new KeyBind(32, KeyBindType.Press)));
+            Wolf.SubMenu("Combo")
+                .AddItem(new MenuItem("ComboActive", "Combo").SetValue(new KeyBind(32, KeyBindType.Press)));
             //Drawings menu
             Wolf.AddSubMenu(new Menu("Drawings", "Drawings"));
-            Wolf.SubMenu("Drawings").AddItem(new MenuItem("QRange", "Q/E").SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
+            Wolf.SubMenu("Drawings")
+                .AddItem(new MenuItem("QRange", "Q/E").SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
             //Make the menu visible
             Wolf.AddToMainMenu();
 
@@ -67,7 +68,7 @@ namespace WolfZilean
             Game.PrintChat("Wolf" + ChampName + " loaded! By GuiltyWolf");
         }
 
-        static void Game_OnGameUpdate(EventArgs args)
+        private static void Game_OnGameUpdate(EventArgs args)
         {
             if (Wolf.Item("ComboActive").GetValue<KeyBind>().Active)
             {
@@ -80,7 +81,7 @@ namespace WolfZilean
             var useQ = Wolf.Item("useQ").GetValue<bool>();
             var useW = Wolf.Item("useW").GetValue<bool>();
             var useE = Wolf.Item("useE").GetValue<bool>();
-            var target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Magical);
+            Obj_AI_Hero target = SimpleTs.GetTarget(Q.Range, SimpleTs.DamageType.Magical);
             if (target == null) return;
 
             if (useQ && Q.IsReady())
@@ -94,12 +95,9 @@ namespace WolfZilean
                 {
                     return;
                 }
-                else
+                if (W.IsReady())
                 {
-                    if (useW && W.IsReady())
-                    {
-                        W.Cast();
-                    }
+                    W.Cast();
                 }
             }
 
@@ -114,12 +112,12 @@ namespace WolfZilean
             var menuItem = Wolf.Item("QRange").GetValue<Circle>();
             if (menuItem.Active) Utility.DrawCircle(Player.Position, Q.Range, menuItem.Color);
             //Draw Ranges of Abilities
-            foreach (var spell in SpellList)
+            foreach (Spell spell in SpellList)
             {
                 menuItem = Wolf.Item(spell.Slot + "Range").GetValue<Circle>();
                 if (menuItem.Active)
                     Utility.DrawCircle(Player.Position, spell.Range, menuItem.Color);
-                }
             }
         }
     }
+}
