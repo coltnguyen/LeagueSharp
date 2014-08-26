@@ -112,7 +112,7 @@ namespace WolfZilean
 
         public static void AutoR()
         {
-            var useR = Wolf.Item("user").GetValue<bool>();
+            var useR = Wolf.Item("useR").GetValue<bool>();
             if (useR && R.IsReady() &&
                 Wolf.Item("HPPercent").GetValue<Slider>().Value >= ((Player.Health/Player.MaxHealth)*100))
             {
