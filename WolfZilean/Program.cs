@@ -62,7 +62,7 @@ namespace WolfZilean
             //Ult menu
             Wolf.AddSubMenu(new Menu("Extra", "Extra"));
             Wolf.SubMenu("Extra").AddItem(new MenuItem("useR", "Use R")).SetValue(true);
-            Wolf.SubMenu("Extra").AddItem(new MenuItem("HPPercent", "R at % HP")).SetValue(new Slider(1, 100, 0));
+            Wolf.SubMenu("Extra").AddItem(new MenuItem("HPPercent", "R at % HP")).SetValue(new Slider(10, 1, 100));
 
             //Drawings menu
             Wolf.AddSubMenu(new Menu("Drawings", "Drawings"));
@@ -112,11 +112,11 @@ namespace WolfZilean
 
         public static void AutoR()
         {
-            var useR = Wolf.Item("useR").GetValue<bool>();
+            var useR = Wolf.Item("user").GetValue<bool>();
             if (useR && R.IsReady() &&
-                Wolf.Item("HPPercent").GetValue<Slider>().Value >= ((Player.Health/Player.MaxHealth)*100))
+                Wolf.Item("HPPercent").GetValue<Slider>().Value <= ((Player.Health/Player.MaxHealth)*100))
             {
-                R.CastOnUnit(Player);
+                R.Cast(Player);
             }
         }
 
