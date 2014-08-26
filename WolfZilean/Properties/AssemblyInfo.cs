@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Zilean")]
+[assembly: AssemblyProduct("WolfZilean")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8b9ab39d-ba27-458c-9568-72e1bca6e8b6")]
+[assembly: Guid("718f374b-912e-4a76-a84c-8af0f21e522c")]
 
 // Version information for an assembly consists of the following four values:
 //
