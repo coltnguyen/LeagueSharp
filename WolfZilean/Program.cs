@@ -95,11 +95,8 @@ namespace WolfZilean
                 {
                     return;
                 }
-                if (W.IsReady())
-                {
                     W.Cast();
                 }
-            }
 
             if (useE && E.IsReady())
             {
