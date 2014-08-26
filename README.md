@@ -4,6 +4,7 @@ LeagueSharp
 WolfZilean:
 -----------
     Full SBTW Combo 
+    Todo: Auto R at % HP
 
 WolfUrgot:
 ----------
