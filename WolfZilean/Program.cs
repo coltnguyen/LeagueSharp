@@ -89,14 +89,10 @@ namespace WolfZilean
                 Q.CastOnUnit(target);
             }
 
-            if (useW && W.IsReady())
+            if (useW && W.IsReady() && !Q.IsReady())
             {
-                if (Q.IsReady())
-                {
-                    return;
-                }
                     W.Cast();
-                }
+            }
 
             if (useE && E.IsReady())
             {
