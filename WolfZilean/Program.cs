@@ -12,7 +12,7 @@ namespace WolfZilean
         public static Orbwalking.Orbwalker Orbwalker;
 
         public static Obj_AI_Base Player = ObjectManager.Player;
-            // Instead of typing ObjectManager.Player you can just type Player
+        // Instead of typing ObjectManager.Player you can just type Player
 
         //Spells
         public static List<Spell> SpellList = new List<Spell>();
@@ -41,13 +41,16 @@ namespace WolfZilean
 
             //Base menu
             Wolf = new Menu("Wolf" + ChampName, ChampName, true);
+
             //Orbwalker and menu
             Wolf.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
             Orbwalker = new Orbwalking.Orbwalker(Wolf.SubMenu("Orbwalker"));
+
             //Target selector and menu
             var ts = new Menu("Target Selector", "Target Selector");
             SimpleTs.AddToMenu(ts);
             Wolf.AddSubMenu(ts);
+
             //Combo menu
             Wolf.AddSubMenu(new Menu("Combo", "Combo"));
             Wolf.SubMenu("Combo").AddItem(new MenuItem("useQ", "Use Q").SetValue(true));
@@ -55,10 +58,17 @@ namespace WolfZilean
             Wolf.SubMenu("Combo").AddItem(new MenuItem("useE", "Use E").SetValue(true));
             Wolf.SubMenu("Combo")
                 .AddItem(new MenuItem("ComboActive", "Combo").SetValue(new KeyBind(32, KeyBindType.Press)));
+
+            //Ult menu
+            Wolf.AddSubMenu(new Menu("Extra", "Extra"));
+            Wolf.SubMenu("Extra").AddItem(new MenuItem("useR", "Use R")).SetValue(true);
+            Wolf.SubMenu("Extra").AddItem(new MenuItem("HPPercent", "R at % HP")).SetValue(new Slider(15, 1, 100));
+
             //Drawings menu
             Wolf.AddSubMenu(new Menu("Drawings", "Drawings"));
             Wolf.SubMenu("Drawings")
                 .AddItem(new MenuItem("QRange", "Q/E").SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
+
             //Make the menu visible
             Wolf.AddToMainMenu();
 
@@ -73,6 +83,10 @@ namespace WolfZilean
             if (Wolf.Item("ComboActive").GetValue<KeyBind>().Active)
             {
                 Combo();
+            }
+            if (Wolf.Item("useR").GetValue<bool>())
+            {
+                AutoR();
             }
         }
 
@@ -89,14 +103,22 @@ namespace WolfZilean
                 Q.CastOnUnit(target);
             }
 
-            if (useW && W.IsReady() && !Q.IsReady())
+            if (useW && W.IsReady() && !Q.IsReady()) //!Spell.IsReady() = Spell not ready
             {
-                    W.Cast();
+                W.Cast();
             }
 
             if (useE && E.IsReady())
             {
                 E.CastOnUnit(target);
+            }
+        }
+
+        public static void AutoR()
+        {
+            if (Player.Health <= Wolf.Item("HPPercent").GetValue<Slider>().Value)
+            {
+                R.CastOnUnit(Player);
             }
         }
 
