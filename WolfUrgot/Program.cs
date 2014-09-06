@@ -30,7 +30,7 @@ namespace WolfUrgot
             if (Player.BaseSkinName != ChampName) return;
 
             Q = new Spell(SpellSlot.Q, 1000);
-            Q2 = new Spell(SpellSlot.Q, 1000);
+            Q2 = new Spell(SpellSlot.Q, 1200);
             W = new Spell(SpellSlot.W);
             E = new Spell(SpellSlot.E, 900);
 
@@ -65,8 +65,6 @@ namespace WolfUrgot
                 .AddItem(new MenuItem("QRange", "Q").SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
             Wolf.SubMenu("Drawings")
                 .AddItem(new MenuItem("ERange", "E").SetValue(new Circle(false, Color.FromArgb(100, 255, 0, 255))));
-            //Exploits
-            //Wolf.AddItem(new MenuItem("NFE", "No-Face Exploit").SetValue(true));
             //Make the menu visible
             Wolf.AddToMainMenu();
 
@@ -102,7 +100,7 @@ namespace WolfUrgot
             }
             else
             {
-                if (useQ && Q.IsReady())
+                if (useQ && Q.IsReady() && !target.HasBuff("UrgotCorrosiveDebuff"))
                 {
                     Q.CastIfHitchanceEquals(target, HitChance.Medium);
                 }
