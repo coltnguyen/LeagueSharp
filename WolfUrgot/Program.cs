@@ -100,7 +100,7 @@ namespace WolfUrgot
             }
             else
             {
-                if (useQ && Q.IsReady() && !target.HasBuff("UrgotCorrosiveDebuff"))
+                if (useQ && Q.IsReady())
                 {
                     Q.CastIfHitchanceEquals(target, HitChance.Medium);
                 }
